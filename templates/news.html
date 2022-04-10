@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>News</title>
+    <link rel="stylesheet" href="{% static 'style.css' %} ">
+    <style>
+        .news-main-card news-box{
+            display:grid;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav.html' %}
+        <div class="main">
+        <h1 class="news-heading">Get the Latest News</h1>
+        <div class="grid-wrapper">
+            
+            <ul>
+                {% for post in response %}
+            <div class="news_box" >
+            <h1><a href="{{post.link}}">{{post.title.rendered}}</a></h1>
+            <br>
+            <p>{{post.excerpt.rendered}}</p>
+            </div>
+
+                {% endfor %} 
+
+            {% comment %} {%for post in object_list%}
+            <li>
+                    <h1><a href="{% url 'article-page' post.pk %}">{{post.title}}</a></h1>
+                    <br>
+                    <p>{{post.content}}</p>
+            </li> 
+            {% endfor %} {% endcomment %}
+            </ul>
+        </div>
+        <button class="more-btn"><a href="">More News</a></button>
+        
+    </div>
+    <hr>
+{% include 'footer.html' %}
+</body>
+</html>

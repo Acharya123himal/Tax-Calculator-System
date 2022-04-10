@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+</head>
+<body>
+
+    {% include 'nav.html' %}
+
+    <h1 class="calculation_header">Calculate Income Tax</h1>
+    <hr>
+
+    <div class="whole-container">
+    <form method="post" id="calculator-form">
+        {% csrf_token %}
+        <div class="container">
+            <div class="col-flex">
+                <label for="name">Name</label> <input type="text" name="name" placeholder="Name" required > <br>
+                <label for="email">Email</label> <input type="email" name="email" placeholder="Email" required> <br>
+                <label for="gender">Gender</label> <select name="gender" id="" required>
+                    <option value="1">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">female</option>
+                </select>
+                <br>
+
+                <label for="Address">Address</label> <input type="text" name="address" placeholder="Address" required>
+                <br>
+
+                <label for="marital-status">Martial Status</label> <select name="marital-status" id="" required>
+                    <option value="1">Select Martial Status</option>
+                    <option value="Martial Status">Married</option>
+                    <option value="Martial Status">single</option>
+                </select>
+                <br>
+            </div>
+
+            <div class="col-flex">
+                <label for="age">Age</label> <select name="age" id="">
+                    <option value="1">Select Age</option>
+                    <option value="1">18</option>
+                    <option value="1">19</option>
+                    <option value="1">20</option>
+                    <option value="1">21</option>
+                    <option value="1">22</option>
+                    <option value="1">23</option>
+                    
+                </select>
+                <br>
+                <label for="phone">Phone Number</label>
+                <input type="tel" placeholder="phone number" name="phone"  pattern="[9]{1}[6-8]{1}[0-9]{8}" required>
+                <br>
+
+                <label for="province">Province</label> 
+                <input type="number" placeholder="province" name="province" min="1" max="7" required>
+                <br>
+
+                <label for="fiscal-year">Fiscal Year</label> <select name="fiscal-year" id="" required>
+                    <option value="1">Select Fiscal Yearr</option>
+                    <option value="Fiscal Year">2070/071</option>
+                    <option value="Fiscal Year">2071/072</option>
+                    <option value="Fiscal Year">2072/073</option>
+                    <option value="Fiscal Year">2073/074</option>
+                    <option value="Fiscal Year">2074/075</option>
+                    <option value="Fiscal Year">2075/076</option>
+                    <option value="Fiscal Year">2076/077</option>
+                    <option value="Fiscal Year">2078/079</option>
+                </select>
+                <br>
+
+
+                <label for="residental-status">Residental Status</label> <select name="residental-status" id="" required>
+                    <option value="1">Select Residental Status</option>
+                    <option value="Residental Status">Resident</option>
+                    <option value="Residental Status">unresident</option>
+                </select>
+                <br>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-flex">
+            <div class="text-container">  Income</div>
+                </div>
+                <div class="col-flex">
+                    <div class="text-container">  Deducation </div>
+                </div>
+        </div>
+
+        <div class="container">
+            <div class="col-flex">
+                <label for="monthly-salary">Monthly Salary</label> <input type="number" name="monthly-salary" id="monthly-salary" placeholder="Monthly Salary" onchange="edit_value()" value="0" min="0" required> <br>
+                <label for="months">Number of Months</label> <input type="number" name="months" id="months" placeholder="Number of Months" onchange="edit_value()"  value="0" required min="1" max="12"> <br>
+                <label for="bonus">Bonus</label> <input type="number" name="bonus" id="bonus" placeholder="Bonus" onchange="edit_value()"  min="0" value="0" required> <br>
+                <label for="allowance">Allowance</label> <input type="number" placeholder="allowance" id="allowance" name="allowance" onchange="edit_value()"  value="0" min="0" required> <br>
+                <label for="others">Others</label> <input type="number" name="others" id="others" placeholder="Others" onchange="edit_value()" value="0" min="0" > <br>
+                <br>
+            </div>
+            <div class="col-flex">
+                <label for="name">Employes Provident Fund</label> <input type="number"  placeholder="Employes Provident Fund" id="employee-provident-fund" name="employee-provident-fund" min="0" value="0" onchange="edit_value()" > <br>
+                <label for="email">Citizen Investment Trust</label> <input type="number" placeholder="Citizen Investment Trust" id="citizen-investment-trust" name="citizen-investment-trust" min="0" min="0" value="0"  onchange="edit_value()" > <br>
+                <label for="insurance">Insurance</label> <input type="number" placeholder="Insurance" min="0" id="insurance" name="insurance" onchange="edit_value()" value="0" min="0" > <br>
+                <label for="email">Medical Expense</label> <input type="number" placeholder="Medical Expense" id="medical-expense" name="medical-expense" min="0" min="0" value="0" onchange="edit_value()" > <br>
+                <label for="name">Other Allowable Deducation</label> <input type="number" placeholder="" id="other_expense" name="other_expense" min="0" min="0" value="0" onchange="edit_value()" > <br>
+                <br>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row-container">
+                <div class="tax-ableincome"><label for="total-income">Net Taxable Income</label> <input id="total_income" readonly type="number" style="-webkit-appearance: none;" value=0></div> 
+            </div>
+        </div> 
+
+        <div class="container">
+            <div class="col-flex-button">
+                <div class="btns">
+                <button onclick="reset()">Reset Values</button>
+                </div>
+            </div>
+            <div class="col-flex-button">
+                <div class="btns cal">
+                <button type="submit">Calculate Tax</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<hr>
+{% include 'footer.html' %}
+
+<script>
+    var calculator_form=document.getElementById('calculator-form');
+    var total_income=document.getElementById('total_income');
+
+    function reset(){
+        calculator_form.reset();
+    }
+    function edit_value(){
+        var monthly_salary=document.getElementById('monthly-salary').value;
+        var total_month=document.getElementById('months').value;
+        var others=document.getElementById('others').value;
+        var bonus=document.getElementById('bonus').value;
+        var allowance=document.getElementById('allowance').value;
+        var employee_provident_fund=document.getElementById('employee-provident-fund').value;
+        var citizen_investment_trust=document.getElementById('citizen-investment-trust').value;
+        var insurance=document.getElementById('insurance').value;
+        var medical_expense=document.getElementById('medical-expense').value;
+        var other_expense=document.getElementById('other_expense').value;
+        total_income.value=parseInt(monthly_salary*total_month)+parseInt(allowance)+parseInt(bonus)+parseInt(others)-employee_provident_fund-citizen_investment_trust-insurance-medical_expense-other_expense;
+    }
+</script>
+</body>
+</html>

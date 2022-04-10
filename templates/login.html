@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Login panel</title>
+    <link rel="stylesheet" href="{% static 'style.css' %} ">
+</head>
+<body>
+  {% include 'nav.html' %}
+  <div class="form-card">
+    <div class="form-blog" onclick="location.href='/news'"></div>
+    <form action="" class="form" method="POST">
+      {% csrf_token %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-info">
+        {{message}}
+      </div>
+      {% endfor %}
+      {% endif %}
+      <div class="log"><h2>Login</h2></div>
+      <input type="Username" name="username" placeholder="Enter username">
+      <input type="Password" name="password" placeholder="Enter password"><br><br>
+
+      <label class="checkbox" for="mycheckboxId">
+          <input class="checkbox__input" type="checkbox" name="mycheckboxName" id="mycheckboxId">
+          <div class="checkbox__box"></div>
+          Remember me
+      </label>
+      <p class="p2"><a href="/password_reset">Forgot Password?</a></p>
+      <button class="btnn" type="submit">Login</button><br><br>
+      <p class="link">Don't have an account? <a href="/signup"> Sign Up</a><br>
+      </form>
+  </div>
+  
+</body>
+</html>

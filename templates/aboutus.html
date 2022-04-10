@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us page</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% include "nav.html" %}
+    <div classs="about-section" id="about-section-id">
+        <div class="heading"><h2>About Us</h2></div>
+        <div class="img">
+            <img src="{% static 'picture.jpg' %}">
+        </div>
+        <div class="about-section-p">
+            <p>It is an easy-to-use online tools that hepls you to estimate your taxes based on your income after the Union Budget is presented.
+                The website is developed taking into account the partical expeience of professionals, students, corporate and various other stakeholders and therefore offers never before seen features to give the users a totally out of box experience.
+                We aim to develop our website as Nepal's biggest resource platform.</p>
+        </div>
+        
+    </div>
+
+<div class="Article">
+    <p> </h3>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

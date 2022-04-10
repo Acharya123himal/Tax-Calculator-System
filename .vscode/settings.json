@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f16870e7-a375-499a-93fb-8ccb76473bd3/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/himal-2066008",
+    "appService.deploySubpath": "."
+}

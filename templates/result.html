@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>tax</title>
+    <link rel="stylesheet" href="{% static 'style.css' %} ">
+
+</head>
+<body>
+  {% include "nav.html" %}
+
+    <div class="tax-card">
+      <h1 class="tax-heading">Net Tax Liability</h1>
+      <hr>
+      <p class="first-amount" style="position: absolute;">Rs. {{liable_tax_monthly}}(Monthly)</p>
+      <p class="second-amount" style="position: absolute;">Rs. {{liable_tax}}(Yearly)</p>
+      <div class="tax-card1">
+        <h2 style="position: absolute;">Sum of EPF and CIT (EPF + CIT): </h2>
+        <h2 style="text-align: right;">Rs. {{sum_epf_cit}}</h2>
+        <hr>
+        <h2 style="position: absolute;">Insurance: </h2>
+        <h2 style="text-align: right;">Rs. {{insurance}}</h2>
+        <hr>
+        <h2 style="position: absolute;">Total Income(TI): </h2>
+        <h2 style="text-align: right;">Rs. {{annual_salary}}</h2>
+        <hr>
+        <h2 style="position: absolute;">Total Deduction(TD): </h2>
+        <h2 style="text-align: right;">Rs. {{total_deduction}}</h2>
+        <hr>
+        <h2 style="position: absolute;">Net Assessable(TI-TD) </h2>
+        <h2 style="text-align: right;">Rs. {{net_accessable}}</h2>
+      </div>
+      
+      <div class="tax-card2">
+        <div class="rectangle">
+          <h2 style="position: absolute;">Assessible Income (Rs.) </h2>
+          <h2 style="position: absolute; margin-left: 15%;">Rate(%) </h2>
+          <h2 style="text-align: right;">Tax Liability</h2>
+        </div>
+        {% for key,value in record.items %}
+        <h2 style="position: absolute; margin-left: 1%;">Rs. {{value.0}} </h2>
+        <h2 style="position: absolute; margin-left: 16.1%;">{{value.1}}</h2>
+        <h2 style="text-align: right; margin-right: 3.5%;">{{value.2}}</h2>
+        <hr>
+        {% endfor %}
+        <div class="rectangle2">
+          <h2 style="position: absolute; margin-left: 0.4%;">Rs. {{annual_salary}} </h2>
+          <h2 style="text-align: right; margin-right: 2%;">Rs.{{annual_tax}}</h2>
+        </div>
+        <h2 style="position: absolute; margin-left: 15%;">Medical Tax: </h2>
+        <h2 style="text-align: right; margin-right: 3.5%;">Rs.{{medical_tax}}</h2>
+        <hr>
+        <h2 style="position: absolute; margin-left: 15%;">Net Tax Liability (Monthly): </h2>
+        <h2 style="text-align: right; margin-right: 3.5%;">Rs.{{liable_tax_monthly}}</h2>
+        <hr>
+        <h2 style="position: absolute; margin-left: 15%;">Net Tax Liability (Yearly): </h2>
+        <h2 style="text-align: right; margin-right: 3.5%;">Rs.{{liable_tax}}</h2>
+      </div>
+      <button class="print-btn" onclick="printFunction()">Print</button><br>
+    </div>
+    <br>
+    <br>
+    <hr>
+
+    {% include "footer.html" %}
+<script>
+  function printFunction(){
+    window.print();
+  }
+</script>
+</body>
+</html>
