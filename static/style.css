@@ -8,19 +8,27 @@
 .nav-menu {
     display: flex;
     padding: 5px;
-    width: 8%;
+    width: 40%;
+    margin-left: 35%;
+    font-weight: bold;
+    justify-content: space-between;
+}
+.nav-menu-2 {
+    display: flex;
+    padding: 5px;
+    width:8%;
     margin-left: 90%;
     font-weight: bold;
     justify-content: space-between;
 }
 
 .nav-menu li {
-    padding: 5px;
+    margin:0px 10px 0px 10px;
+    padding: 2px;
     user-select: none;
 }
 
 .nav-menu li:hover {
-    background-color: rgb(47, 167, 47);
     color: white;
     cursor: pointer;
     border-radius: 5px;
@@ -112,7 +120,7 @@
     border-color: black;
     margin-top: 2%;
     margin-left: 3%;
-    width: 1795px;
+    width: 95%;
     height: 800px;
 }
 
@@ -195,15 +203,15 @@
 
 .form{
     width: 350px;
-    height: 300;
-    color: black;
-    border-style: solid;
-    border-color: black;
+    height: 83.5%;
     position: absolute;
-    margin-top: 8%;
-    right: 65%;
-    border-radius: 15px;
+    margin-top: -0.1%;
+    margin-left:10.4%;
     padding: 30px;
+    /* color: black;
+    border-style: solid;
+    border-color: black; */
+    position: absolute;
 }
 
 .news-main-card {
@@ -360,39 +368,36 @@
 
 .form-signup {
     width: 350px;
-    height: 300;
-    color: black;
-    border-style: solid;
-    border-color: black;
+    height: 87%;
     position: absolute;
-    margin-top: 0.5%;
-    right: 72%;
-    border-radius: 15px;
+    margin-top: -0.1%;
+    margin-left:2%;
     padding: 30px;
 }
 
 .form-blog{
-    width: 350px;
-    height: 450px;
+    background-image: url("background.jpeg");
+    background-size: contain;
+    width: 61%;
+    height: 84%;
     color: black;
-    border-style: solid;
     border-color: black;
     position: absolute;
-    margin-top: 8%;
-    right: 15%;
-    border-radius: 15px;
+    margin-left: 590px;
     padding: 30px;
 }
 
 .form-blog-signup {
-    width: 550px;
-    height: 599px;
+    background-image: url("background.jpeg");
+    background-size: contain;
+    width:64%;
+    height: 87%;
     color: black;
     border-style: solid;
     border-color: black;
     position: absolute;
-    margin-top: 3.5%;
-    right: 15%;
+    margin-top: -0.2%;
+    margin-left:26.5%;
     border-radius: 15px;
     padding: 30px;
 }
@@ -439,7 +444,7 @@
     border-radius: 15px;
     padding: 10px;
     margin-left: -10px;
-
+    height: 70%;
 }
 .form-signup input{
     width: 350px;
@@ -669,10 +674,10 @@ label {
     justify-content: center;
     float: right;
     margin-top: -5%;
+    padding: 5px;
 }
 
-.team-list li {
-    padding: 10px;
+.team-list p {
     width: 190px;
 }
 
@@ -680,10 +685,10 @@ label {
     justify-content: center;
     float: right;
     margin-top: -5%;
+    padding: 2px;
 }
 
-.team-list2 li {
-    padding: 10px;
+.team-list2 p {
     width: 190px;
 }
 
@@ -861,4 +866,16 @@ box-sizing: border-box;
     .print-btn{
         visibility: hidden;
     }
+}
+
+
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 10px;
+    padding: 10px;
+}
+
+.calculation_header{
+    text-align: center;
 }

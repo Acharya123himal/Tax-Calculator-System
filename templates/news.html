@@ -19,28 +19,17 @@
         <div class="main">
         <h1 class="news-heading">Get the Latest News</h1>
         <div class="grid-wrapper">
-            
             <ul>
                 {% for post in response %}
-            <div class="news_box" >
-            <h1><a href="{{post.link}}">{{post.title.rendered}}</a></h1>
-            <br>
-            <p>{{post.excerpt.rendered}}</p>
-            </div>
-
+                <li>
+                <h1><a href="{{post.link}}">{{post.title.rendered}}</a></h1>
+                <br>
+                <p>{{post.excerpt.rendered}}</p>
+                </li>
                 {% endfor %} 
-
-            {% comment %} {%for post in object_list%}
-            <li>
-                    <h1><a href="{% url 'article-page' post.pk %}">{{post.title}}</a></h1>
-                    <br>
-                    <p>{{post.content}}</p>
-            </li> 
-            {% endfor %} {% endcomment %}
             </ul>
         </div>
         <button class="more-btn"><a href="">More News</a></button>
-        
     </div>
     <hr>
 {% include 'footer.html' %}

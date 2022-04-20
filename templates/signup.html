@@ -10,14 +10,8 @@
     <link rel="stylesheet" href="{% static 'style.css' %} ">
 </head>
 <body>
-  <h1 class="nav-text"><a style="color: black;" href="/">Tax Calculator</a></h1>
-  <img class="nav-logo" src="{% static 'logo.png' %}" alt="" srcset="">
-  <div class="nav">
-    <ul class="nav-menu">
-        <li><a style="color: black;" href="/login">Login</a></li>
-        <li><a style="color: black;" href="/signup">Sign Up</a></li>
-    </ul>
-    <hr>
+  {% include 'nav-home.html' %}
+
   </div>
     <div class="form-card">
       <div class="form-blog-signup"></div>

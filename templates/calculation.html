@@ -20,6 +20,24 @@
         {% csrf_token %}
         <div class="container">
             <div class="col-flex">
+                {% if user.is_authenticated %}
+                <label for="name">Name</label> <input type="text" name="name" placeholder="{{ user.get_full_name }}" required value="{{ user.get_full_name }}"> <br>
+                <label for="email">Email</label> <input type="email" name="email" placeholder="{{ user.email }}" required value="{{ user.email }}"> <br>
+                <label for="gender">Gender</label> <select name="gender" id="" required>
+                    <option value="1">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">female</option>
+                </select>
+                <br>
+
+                <label for="Address">Address</label> <input type="text" name="address" placeholder="Address" required>
+                <br>
+                <label for="marital-status">Martial Status</label> <select name="marital-status" id="" required>
+                    <option value="1">Select Martial Status</option>
+                    <option value="Martial Status">Married</option>
+                    <option value="Martial Status">single</option>
+                </select>
+                {%else%}
                 <label for="name">Name</label> <input type="text" name="name" placeholder="Name" required > <br>
                 <label for="email">Email</label> <input type="email" name="email" placeholder="Email" required> <br>
                 <label for="gender">Gender</label> <select name="gender" id="" required>
@@ -37,6 +55,8 @@
                     <option value="Martial Status">Married</option>
                     <option value="Martial Status">single</option>
                 </select>
+                {%endif%}
+
                 <br>
             </div>
 
@@ -153,7 +173,9 @@
         var insurance=document.getElementById('insurance').value;
         var medical_expense=document.getElementById('medical-expense').value;
         var other_expense=document.getElementById('other_expense').value;
-        total_income.value=parseInt(monthly_salary*total_month)+parseInt(allowance)+parseInt(bonus)+parseInt(others)-employee_provident_fund-citizen_investment_trust-insurance-medical_expense-other_expense;
+        var total_gain=parseInt(monthly_salary*total_month)+parseInt(allowance)+parseInt(bonus)+parseInt(others);
+        var total_expense=parseInt(employee_provident_fund)+parseInt(citizen_investment_trust)+parseInt(insurance)+parseInt(medical_expense)+parseInt(other_expense);
+        total_income.value=parseInt(total_gain)-parseInt(total_expense);
     }
 </script>
 </body>

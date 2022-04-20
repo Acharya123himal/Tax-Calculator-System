@@ -4,13 +4,18 @@
 <img class="nav-logo" src="{% static '/logo.png' %} " alt="" srcset="">
 <div class="nav">
     <ul class="nav-menu">
+        <li><a style="color: black;" href="{% url 'news' %}">News</a></li>
+        <li><a style="color: black;" href="{% url 'calculator' %}">Tax Calculator</a></li>
+        <li><a style="color: black;" href="{% url 'feedback' %}">Feedback</a></li>
+        <li><a style="color: black;" href="{% url 'instructions' %}">Instructions</a></li>
+        <li><a style="color: black;" href="{% url 'about' %}">About Us</a></li>
         {% if user.is_authenticated %}
+        <li>Hi {{user.first_name}}</li>
         <li><a style="color: black;" href="{% url 'logout' %}">Logout</a></li>
         {%else%}
-        <li><a style="color: black;" href="/login">Login</a></li>
-        <li><a style="color: black;" href="/signup">Sign Up</a></li>
+        <li><a style="color: black;" href="{% url 'login' %}">Login</a></li>
+        <li><a style="color: black;" href="{% url 'register' %}">Sign Up</a></li>
         {%endif%}
-        
     </ul>
     <hr>
 </div>

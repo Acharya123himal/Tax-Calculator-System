@@ -14,20 +14,20 @@ def login_request(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/calculator')
+            return HttpResponseRedirect("{%url 'calculator' %}")
         else:
             messages.success(request, 'Invalid credentials.')
-            return HttpResponseRedirect('/login')
+            return HttpResponseRedirect("{%url 'login' %}")
     else:
         if request.user.is_authenticated:
-            return HttpResponseRedirect('/calculator')
+            return HttpResponseRedirect("{%url 'calculator' %}")
         else:
             return render(request, 'login.html')
 
 def logout_request(request):
     logout(request)
     messages.success(request,'Logout Successfully')
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect("{%url 'login' %}")
 
 def register_request(request):
     if request.method=="POST":
@@ -42,16 +42,16 @@ def register_request(request):
         email = request.POST.get('email')
         if password != cpassword:
             messages.success(request, 'Password not match')
-            return HttpResponseRedirect('/signup')
+            return HttpResponseRedirect("{%url 'register' %}")
         else:
             user = User.objects.create_user(first_name=fname,last_name=lname,email=email,password=password,username=username)
             if user is not None:
                 user.save()
                 messages.success(request,'User Created Succefully')
-                return HttpResponseRedirect('/login')
+                return HttpResponseRedirect("{%url 'login' %}")
             else:
                 messages.success(request, 'Please Fill Details Completely')
-                return HttpResponseRedirect('/signup')
+                return HttpResponseRedirect("{%url 'register' %}")
 
     else:
         if request.user.is_authenticated:

@@ -22,5 +22,5 @@ urlpatterns = [
     path('', include('frontend.urls')),
     path('', include('authentication.urls')),
     path('', include('blog.urls')),
-    path('calculator/', include('calculator.urls')),
+    path('calculator/', include('calculator.urls'),name="calculator"),
 ]
