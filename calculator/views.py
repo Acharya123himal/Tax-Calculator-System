@@ -20,6 +20,8 @@ def tax_calculation(salary,tax,record):
 
 def calculator(request):
     if request.method == 'POST':
+        name=request.POST.get('name')
+        address=request.POST.get('address')
         marital_status=request.POST.get('marital-status')
         age=int(request.POST.get('age'))
         fiscal_year=request.POST.get('fiscal-year')
@@ -44,6 +46,8 @@ def calculator(request):
         liable_tax=annual_tax-medical_tax
         liable_tax_monthly=int(liable_tax/12)
         data={
+            'name':name,
+            'address':address,
             'annual_salary':annual_salary,
             'annual_tax':annual_tax,
             'sum_epf_cit':sum_epf_cit,

@@ -10,3 +10,11 @@ def send_reset_password_mail(email,token):
     send_mail(subject,message,email_from,recipient_list)
     return True
 
+def send_welcome_mail(email,name):
+    subject='Welcome'
+    message=f'Hi {name}, Welcome to Tax Calculator System.'
+    email_from=settings.EMAIL_HOST_USER
+    recipient_list=[email]
+    print(recipient_list*100)
+    send_mail(subject,message,email_from,recipient_list)
+    return True

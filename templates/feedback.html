@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>tax</title>
+    <title>Feedback |Tax Calculation</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 {% include "nav.html" %}
     <h1 class="feedback-title">Give Feedback</h1>
-    <div class="feedback-container">
-        <input type="Username" id="feedbackname" name="Name" placeholder="Name" required><br>
-        <input type="number" id="feedbacknumber" name="Mobile Number" placeholder="Mobile Number" required><br>
-        <input type="email" id="feedbackemail" name="Email" placeholder="Email" required><br>
-        <textarea id="feedbackmessage" name="feedbackmessage" rows="4" cols="50" placeholder="What do you think about this website?"></textarea><br>
+    <form class="feedback-container" method="post">
+        {% csrf_token %}
+        <input type="Username" id="feedbackname" name="name" placeholder="Name" required><br>
+        <input type="tel" id="feedbacknumber" name="contact" placeholder="Mobile Number" pattern="[9]{1}[6-8]{1}[0-9]{8}" required><br>
+        <input type="email" id="feedbackemail" name="email" placeholder="Email" required><br>
+        <textarea id="feedbackmessage" name="message" rows="4" cols="50" placeholder="What do you think about this website?" required></textarea><br>
         <button type="submit" class="submit-feedback">Submit</button>
         <div class="feedbackside-heading">
             <h2>Contact Us</h2>
@@ -26,7 +27,7 @@
             <p>State No.3, Nepal</p>
             <p>info@herald.com</p>
         </div>
-    </div>
+    </form>
     <br><br>
     <hr>
 

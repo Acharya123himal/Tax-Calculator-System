@@ -85,9 +85,30 @@
     font-weight: bold;
     font-size: 14px;
     margin-left: 17.6%;
+    margin-top: 25px;
 }
 
 .second-amount {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 48%;
+    margin-top: 25px;
+
+}
+
+
+.first-block {
+    margin-top: 0px;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 17.6%;
+}
+
+.second-block {
+    margin-top: 0px;
+
     color: black;
     font-weight: bold;
     font-size: 14px;
@@ -119,8 +140,8 @@
     border-style: solid;
     border-color: black;
     margin-top: 2%;
-    margin-left: 3%;
-    width: 95%;
+    margin-left: 12%;
+    width: 450px;
     height: 800px;
 }
 
@@ -136,8 +157,9 @@
 .tax-card1 {
     border-style: solid;
     border-color: grey;
-    margin-top: 3.5%;
+    margin-top: 5%;
     margin-left: 26%;
+    
     width: 600px;
     height: 208px;
 }
@@ -202,15 +224,15 @@
 }
 
 .form{
-    width: 350px;
-    height: 83.5%;
+    width: 450px;
+    height: 65%;
     position: absolute;
-    margin-top: -0.1%;
+    margin-top: 80px;
     margin-left:10.4%;
     padding: 30px;
-    /* color: black;
+    color: black;
     border-style: solid;
-    border-color: black; */
+    border-color: black;
     position: absolute;
 }
 
@@ -378,27 +400,27 @@
 .form-blog{
     background-image: url("background.jpeg");
     background-size: contain;
-    width: 61%;
-    height: 84%;
+    width: 45%;
+    height: 65%;
     color: black;
     border-color: black;
     position: absolute;
-    margin-left: 590px;
+    margin-left: 690px;
+    margin-top: 80px;
     padding: 30px;
 }
 
 .form-blog-signup {
     background-image: url("background.jpeg");
     background-size: contain;
-    width:64%;
-    height: 87%;
+    width:50%;
+    height: 83%;
     color: black;
     border-style: solid;
     border-color: black;
     position: absolute;
     margin-top: -0.2%;
     margin-left:26.5%;
-    border-radius: 15px;
     padding: 30px;
 }
 
@@ -626,29 +648,29 @@
 .fb {
     background-color: #3B5998;
     color: white;}
-  
-  .google {
-    background-color: #ca242c;
-    color: white;
     
-  }
+    .google {
+        background-color: #ca242c;
+        color: white;
+    
+    }
     .col {
-      width: 100%;
-      margin-top: 5px;
-      padding-top: 5px;
+        width: 100%;
+        margin-top: 5px;
+        padding-top: 5px;
     }
 input,
 .btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  margin: 5px 0;
-  opacity: 0.85;
-  display: inline-block;
-  font-size: 17px;
-  line-height: 20px;
-  text-decoration: none; 
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; 
 }
 .btn:hover{
     background: #fff;
@@ -731,6 +753,9 @@ textarea {
     resize: none;
 }
 
+footer{
+    margin-top:10%;
+}
 
 footer h1 {
     margin-left: 4%;
@@ -749,7 +774,6 @@ footer h3 {
 }
 
 footer p {
-    /* position:fixed; */
     bottom:0;
     left:1;
 }
