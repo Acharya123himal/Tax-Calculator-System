@@ -13,9 +13,10 @@
         <li>Hi {{user.first_name}}</li>
         <li><a style="color: black;" href="{% url 'logout' %}">Logout</a></li>
         {%else%}
-        <li><a style="color: black;" href="{% url 'login' %}">Login</a></li>
-        <li><a style="color: black;" href="{% url 'register' %}">Sign Up</a></li>
         {%endif%}
+        {% if user.is_superuser %}
+           <a style="color: black;" href="/admin"> <p>Admin Panel</p></a>
+        {% endif %}
     </ul>
     <hr>
 </div>

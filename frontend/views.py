@@ -19,9 +19,9 @@ def feedback(request):
         message=request.POST.get('message')
         try:
             send_feedback_mail(email, name)
-            message.success(request,'Thank You! Feedback Sent Successfully')
+            messages.success(request,'Thank You! Feedback Sent Successfully')
         except:
-            message.success(request,'Failed')
+            messages.success(request,'Failed')
         return HttpResponseRedirect('/feedback')
     else:
         return render(request, 'feedback.html')

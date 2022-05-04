@@ -6,10 +6,14 @@
     <ul class="nav-menu-2">
         {% if user.is_authenticated %}
         <li><a style="color: black;" href="{% url 'logout' %}">Logout</a></li>
+        {% if user.is_superuser %}
+           <a style="color: black;" href="/admin"> <p>Admin Panel</p></a>
+        {% endif %}
         {%else%}
         <li><a style="color: black;" href="{% url 'login' %}">Login</a></li>
         <li><a style="color: black;" href="{% url 'register' %}">Sign Up</a></li>
         {%endif%}
+        
     </ul>
     <hr>
 </div>
