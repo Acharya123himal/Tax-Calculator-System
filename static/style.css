@@ -874,7 +874,6 @@ box-sizing: border-box;
     margin: 0 10%;
 }
 
-
 @media print {
     body * {
         visibility: hidden;

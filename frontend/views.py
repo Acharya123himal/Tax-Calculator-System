@@ -18,7 +18,7 @@ def feedback(request):
         email=request.POST.get('email')
         message=request.POST.get('message')
         try:
-            send_feedback_mail(email, name)
+            send_feedback_mail(name,contact,email,message)
             messages.success(request,'Thank You! Feedback Sent Successfully')
         except:
             messages.success(request,'Failed')
@@ -28,3 +28,6 @@ def feedback(request):
 
 def instructions(request):
     return render(request, 'howto.html')
+
+def page_not_found_view(request,exception):
+    return render(request, '404page.html')

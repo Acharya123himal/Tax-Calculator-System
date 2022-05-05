@@ -26,3 +26,4 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('calculator/', include('calculator.urls'),name="calculator"),
 ]
+handler404 = 'frontend.views.page_not_found_view'
