@@ -1,37 +1,83 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>News</title>
-    <link rel="stylesheet" href="{% static 'style.css' %} ">
-    <style>
-        .news-main-card news-box{
-            display:grid;
-        }
-    </style>
-</head>
-<body>
-    {% include 'nav.html' %}
-        <div class="main">
-        <h1 class="news-heading">Get the Latest News</h1>
-        <div class="grid-wrapper">
-            <ul>
-                {% for post in response %}
-                <li>
-                <h1><a href="{{post.link}}">{{post.title.rendered}}</a></h1>
-                <br>
-                <p>{{post.excerpt.rendered}}</p>
-                </li>
-                {% endfor %} 
-            </ul>
+{% extends "base.html" %}
+{% block content %}
+<div class ="row">
+    <div class="col-md-10 offset-md-3">
+        <div class="col-lg-8">
+            <h3>Articles</h3>
+            <hr>
         </div>
-        <button class="more-btn"><a href="">More News</a></button>
     </div>
+</div>
+<div class ="row">
+<div class="col-md-10 offset-md-3">
+    <div class="col-lg-8">
+        <form>
+            {% csrf_token %} 
+            <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Search">
+            <button type="submit" class="btn btn-danger">Search</button>
+        </form>
+    </div>
+</div>
+
+</div>
+
+
+{% if articles %}
+
+{% for article in articles %}
+<div class="row">
+<div class="col-md-10 offset-md-3">
+
+<!-- Post Content Column -->
+<div class="col-lg-8">
+
+    <!-- Title -->
+    <a href="{% url 'article:detail' article.slug %}"><h2 class="mt-4">{{article.title}}</h2></a> 
+        
+    <!-- Author -->
+    <p class="lead">
+        
+        {{article.author.username}} Posted by
+    </p>
+
     <hr>
-{% include 'footer.html' %}
-</body>
-</html>
+
+    <!-- Date/Time -->
+    <p>{{article.created_date}}</p>
+    <hr>
+    <!-- Preview Image -->
+    {% if article.article_image %}
+    <a href="{% url 'article:detail' article.slug %}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""></a>
+    {% endif %}
+    
+
+    <hr>
+
+    <!-- Post Content -->
+    <p class="lead">
+        {{article.content|safe|truncatewords:50}}
+    </p>
+
+    <a href="{% url 'article:detail' article.slug %}" class ="btn btn-danger my-3">Read More</a>
+    <hr>
+        
+        </div>
+    </div>
+    </div>
+
+{% endfor %}
+
+
+{% else %}
+<div class ="row">
+
+<div class="col-md-10 offset-md-3">
+    <div class="col-lg-8">
+<div class = "alert alert-danger">
+No Post Found
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+{% endblock content %}

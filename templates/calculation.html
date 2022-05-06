@@ -18,6 +18,13 @@
     <div class="whole-container">
     <form method="post" id="calculator-form">
         {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert" >
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="container">
             <div class="col-flex">
                 {% if user.is_authenticated %}
@@ -146,7 +153,7 @@
             </div>
             <div class="col-flex-button">
                 <div class="btns cal">
-                <button type="submit">Calculate Tax</button>
+                <button type="submit" onclick="reset()">Calculate Tax</button>
                 </div>
             </div>
         </div>

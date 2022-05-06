@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout
 from .helpers import send_welcome_mail
+from django.views.decorators.cache import cache_control
 
+@cache_control(no_cache=True, must_revalidate=True)
 def login_request(request):
     if request.method=="POST":
         user=username = password = ''

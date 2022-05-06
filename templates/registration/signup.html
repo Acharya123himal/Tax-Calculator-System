@@ -21,7 +21,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7 py-5">
             <h3>Register</h3>
-            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+            <p class="mb-4">Fill Your Details To Create Account</p>
             <form method="post">
               {% csrf_token %}
               {% if messages %}
@@ -35,13 +35,13 @@
                 <div class="col-md-6">
                   <div class="form-group first">
                     <label for="fname">First Name</label>
-                    <input type="text" class="form-control" name="fname" placeholder="e.g. John" id="fname">
+                    <input type="text" class="form-control" name="fname" placeholder="Himal" id="fname">
                   </div>    
                 </div>
                 <div class="col-md-6">
                   <div class="form-group first">
                     <label for="lname">Last Name</label>
-                    <input type="text" class="form-control" name="lname" placeholder="e.g. Smith" id="lname">
+                    <input type="text" class="form-control" name="lname" placeholder="Acharya" id="lname">
                   </div>    
                 </div>
               </div>
@@ -49,15 +49,15 @@
                 <div class="col-md-12">
                   <div class="form-group first">
                     <label for="email">Email Address</label>
-                    <input type="email" name="email" class="form-control" placeholder="e.g. john@your-domain.com" id="email">
+                    <input type="email" name="email" class="form-control" placeholder="admin@example.com" id="email">
                   </div>    
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group first">
-                    <label for="lname">Phone Number</label>
-                    <input type="text" class="form-control" name="tel" placeholder="+977 0000 000 0000" id="lname">
+                    <label for="tel">Phone Number</label>
+                    <input type="text" class="form-control" name="tel" placeholder="+977 9000 000 0000" id="tel">
                   </div>    
                 </div>
               </div>
@@ -66,14 +66,14 @@
               
                   <div class="form-group last mb-3">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Your Password" id="password">
+                    <input type="password" class="form-control" name="password" placeholder="Your Password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                   </div>
                 </div>
                 <div class="col-md-6">
               
                   <div class="form-group last mb-3">
                     <label for="re-password">Re-type Password</label>
-                    <input type="password" class="form-control" name="confirmpassword" placeholder="Your Password" id="re-password">
+                    <input type="password" class="form-control" name="confirmpassword" placeholder="Your Password" id="re-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                   </div>
                 </div>
               </div>

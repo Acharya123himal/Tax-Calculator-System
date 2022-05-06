@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.cache import cache_control
 
+@cache_control(no_cache=True, must_revalidate=True)
 def tax_calculation(salary,tax,record):
     if(salary>2000000):
         record['2000000']=[salary-2000000,36,0.36*(salary-2000000)]
@@ -17,7 +19,8 @@ def tax_calculation(salary,tax,record):
     else:
         record['0']=[salary,1,0.01*(salary)]
         return [tax+0.01*salary,record]
-
+    
+@cache_control(no_cache=True, must_revalidate=True)
 def calculator(request):
     if request.method == 'POST':
         name=request.POST.get('name')

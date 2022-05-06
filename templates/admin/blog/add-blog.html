@@ -1,56 +1,29 @@
+{% extends "layouts/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Add Post</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
-    <link rel="stylesheet" href="{% static 'style.css' %} ">
-</head>
-<body>
-    <div class="body-content">
-        <div class="main">
-        <div class="main-content">
-            <div class="main-container new-blog">
-            <h2>Create a new blog post</h2>
-            <div class="new-post-form blog">
-                <form class="new-blog-form">
-                <div class="form-field field-1 medium">
-                    <label for="post-title">Post Title</label>
-                    <input id="post-title" type="text" name="post-title">
-                </div>
-                <div class="form-field field-2 medium">
-                    <label for="url-slug">URL Slug</label>
-                    <input id="url-slug" type="text" name="url-slug">
-                </div>
-                <div class="form-field field-3 medium">
-                    <label for="post-description">Post Description</label>
-                    <textarea id="post-description" type="text" rows="3" name="post-description"></textarea>
-                </div>
-                <div class="form-field field-4 short">
-                    <label for="post-thumbnail">Post Thumbnail</label>
-                    <input id="post-thumbnail" type="file" name="post-thumbnail" accept="image/png, image/jpg, image/jpeg">
-                </div>
+{% block title %} Add New Post {% endblock %} 
 
-                <div class="form-field field-6 short">
-                    <div class="form-field field-8 checkbox">
-                    <input id="featured-post" type="checkbox" name="featured-post">
-                    <label for="featured-post">Make this your featured post</label>
-                    </div>
-                    <div class="new-post-actions">
-                    <div class="button-container">
-                        <button class="save-draft" type="submit">Save as draft</button>
-                    </div>
-                    <div class="button-container">
-                        <button class="publish" type="submit">Publish</button>
-                    </div>
-                    </div>
-                </form>
-            </div>
-            </div>
-        </div>
-        </div>
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Add New Post</h3>
+        <hr>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type = "submit" class = "btn btn-danger">Post</button>
+        </form>
     </div>
-</body>
+</div>
 
-</html>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
