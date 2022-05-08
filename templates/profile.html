@@ -2046,6 +2046,7 @@
 	</style>
 </head>
 <body>
+{% load crispy_forms_tags %}
 	<div class="main-content">
 	<!-- Page content -->
 	<div class="container-fluid mt--7">
@@ -2064,7 +2065,7 @@
 			</div>
 			</div>
 			<div class="card-body">
-			<form method="post">
+			 <form method="post">
 				{% csrf_token %}
 				{% if messages %}
 					{% for message in messages %}
@@ -2074,18 +2075,20 @@
 					{% endfor %}
 				{% endif %}
 				<h6 class="heading-small text-muted mb-4">User information</h6>
-				<div class="pl-lg-4">
+				{{form|crispy}}
+
+				{% comment %}<div class="pl-lg-4">
 				<div class="row">
 					<div class="col-lg-6">
 					<div class="form-group focused">
 						<label class="form-control-label" for="input-username">Username</label>
-						<input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{user.username}}">
+						<input type="text" name="username" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{user.username}}">
 					</div>
 					</div>
 					<div class="col-lg-6">
 					<div class="form-group">
 						<label class="form-control-label" for="input-email">Email address</label>
-						<input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value={{user.email}}>
+						<input type="email" name="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value={{user.email}}>
 					</div>
 					</div>
 				</div>
@@ -2093,19 +2096,19 @@
 					<div class="col-lg-6">
 					<div class="form-group focused">
 						<label class="form-control-label" for="input-first-name">First name</label>
-						<input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{user.first_name}}">
+						<input type="text" id="input-first-name" name="fname" class="form-control form-control-alternative" placeholder="First name" value="{{user.first_name}}">
 					</div>
 					</div>
 					<div class="col-lg-6">
 					<div class="form-group focused">
 						<label class="form-control-label" for="input-last-name">Last name</label>
-						<input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{user.last_name}}">
+						<input type="text" id="input-last-name" name="lname" class="form-control form-control-alternative" placeholder="Last name" value="{{user.last_name}}">
 					</div>
 				</div>
 					<div class="row">
 						<div class="col-lg-4">
 						<div class="form-group focused">
-							<label class="form-control-label" for="input-gender">Gender</label>
+							<label class="form-control-label" name="gender" for="input-gender">Gender</label>
 							<select type="text" id="input-gender" class="form-control form-control-alternative" placeholder="Gender" value="{{user.gender}}">
 							<option value="">Select Gender</option>
 							<option value="1">Male</option>
@@ -2116,7 +2119,7 @@
 						</div>
 						<div class="col-lg-4">
 						<div class="form-group focused">
-							<label class="form-control-label" for="input-last-name">Marital Status</label>
+							<label class="form-control-label" name="marital_status" for="input-last-name">Marital Status</label>
 							<select type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Resident" value="{{user.resident}}">
 								<option value="">Select Status</option>
 								<option value="1">Married</option>
@@ -2127,7 +2130,7 @@
 						<div class="col-lg-4">
 							<div class="form-group focused">
 								<label class="form-control-label" for="input-last-name">Resident Status</label>
-								<select type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Resident" value="{{user.resident}}">
+								<select type="text" id="input-last-name" name="resident_status" class="form-control form-control-alternative" placeholder="Resident" value="{{user.resident}}">
 									<option value="">Select Status</option>
 									<option value="1">Resident</option>
 									<option value="2">Resident</option>
@@ -2146,13 +2149,13 @@
 					<div class="col-md-8">
 					<div class="form-group focused">
 						<label class="form-control-label" for="input-address">Address</label>
-						<input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="{{user.address}}" type="text">
+						<input id="input-address" name="address" class="form-control form-control-alternative" placeholder="Home Address" value="{{user.address}}" type="text">
 					</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group focused">
 							<label class="form-control-label" for="input-address">State</label>
-							<select id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="{{user.state}}" type="text">
+							<select id="input-address" name="state" class="form-control form-control-alternative" placeholder="Home Address" value="{{user.state}}" type="text">
 								<option value="1">1</option>  
 								<option value="2">2</option>  
 								<option value="3">3</option>  
@@ -2162,12 +2165,12 @@
 								<option value="7">7</option> 
 							</select>
 						</div>
-						</div>
+						</div>{% endcomment %}
 						<div class="col-12 text-right">
-							<button type="submit" class="btn btn-sm btn-primary">Update</button>
+							<button type="submit"  class="btn btn-sm btn-primary">Update</button>
 							</div>
 				</div>
-			</form>
+			</form> 
 			</div>
 		</div>
 	</div>

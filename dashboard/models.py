@@ -5,3 +5,6 @@ class Mail(models.Model):
     subject = models.CharField(max_length = 50,verbose_name = "Subject")
     email = models.EmailField(verbose_name = "Email")
     message = RichTextField()
+
+class Settings(models.Model):
+    image=models.ImageField(upload_to="uploads")

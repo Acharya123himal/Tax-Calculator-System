@@ -6,7 +6,7 @@ from blog.models import Blog
 from authentication.models import User
 from django.contrib.auth import get_user_model
 user = get_user_model()
-from .forms import  MailForm
+from .forms import  MailForm, SettingsForm
 from .helpers import sendmail
 from django.views.generic import ListView
 
@@ -29,7 +29,13 @@ def manage_post(request):
 
 @login_required(login_url = "login")
 def settings(request):
-    return render(request,"admin/settings.html")
+    form = SettingsForm(request.POST or None)
+    if form.is_valid():
+        formdata = form.save(commit=False)
+        formdata.save()
+        messages.success(request,"Settings Updated Successfully")
+        return redirect("settings")
+    return render(request,"admin/settings.html",{"form":form})
 
 @login_required(login_url = "login")
 def user_list(request):

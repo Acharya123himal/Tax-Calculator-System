@@ -1,5 +1,5 @@
 from django import forms
-from .models import Mail
+from .models import Mail, Settings
 from django.forms import ModelForm
 
 class MailForm(forms.ModelForm):
@@ -10,3 +10,10 @@ class MailForm(forms.ModelForm):
     class Meta:
         model = Mail
         fields = ["sender","subject","email","message"]
+        
+class SettingsForm(forms.ModelForm):
+    image=forms.ImageField()
+    
+    class Meta:
+        model=Settings
+        fields=["image"]
