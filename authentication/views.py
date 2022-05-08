@@ -46,12 +46,12 @@ def register_request(request):
         fname = request.POST.get('fname')
         lname = request.POST.get('lname')
         email = request.POST.get('email')
-        tel= request.POST.get('tel')
+        tel= request.POST.get('telephone')
         if password != cpassword:
             messages.success(request, 'Password not match')
             return HttpResponseRedirect("/register/")
         else:
-            user = User.objects.create_user(first_name=fname,last_name=lname,email=email,password=password,username=username,tel=tel)
+            user = User.objects.create_user(first_name=fname,last_name=lname,email=email,password=password,username=username,telephone=tel)
             if user is not None:
                 user.save()
                 messages.success(request,'User Created Succefully')

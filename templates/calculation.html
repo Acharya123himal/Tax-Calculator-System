@@ -32,17 +32,34 @@
                 <label for="email">Email</label> <input type="email" name="email" placeholder="{{ user.email }}" required value="{{ user.email }}"> <br>
                 <label for="gender">Gender</label> <select name="gender" id="" required>
                     <option value="1">Select gender</option>
+
+                    {% if user.gender == "male" %}
+                    <option value="male" selected>Male</option>
+                    {%else%}
                     <option value="male">Male</option>
-                    <option value="female">female</option>
+                    {%endif%}
+                    {% if user.gender is "female"  %}
+                    <option value="female" selected>Female</option>
+                    {%else%}
+                    <option value="female">Female</option>
+                    {%endif%}
                 </select>
                 <br>
 
-                <label for="Address">Address</label> <input type="text" name="address" placeholder="Address" required>
+                <label for="Address">Address</label> <input type="text" name="address" placeholder="Address" value={{user.address}} required>
                 <br>
                 <label for="marital-status">Martial Status</label> <select name="marital-status" id="" required>
                     <option value="1">Select Martial Status</option>
+                    {% if user.marital is "married"  %}
+                    <option value="married" selected>Married</option>
+                    {%else%}
                     <option value="married">Married</option>
-                    <option value="unmarried">single</option>
+                    {%endif%}
+                    {% if user.marital is "unmarried"  %}
+                    <option value="unmarried" selected>Unmarried</option>
+                    {%else%}
+                    <option value="unmarried">Unmarried</option>
+                    {%endif%}
                 </select>
                 {%else%}
                 <label for="name">Name</label> <input type="text" name="name" placeholder="Name" required > <br>
@@ -56,7 +73,6 @@
 
                 <label for="Address">Address</label> <input type="text" name="address" placeholder="Address" required>
                 <br>
-
                 <label for="marital-status">Martial Status</label> <select name="marital-status" id="" required>
                     <option value="1">Select Martial Status</option>
                     <option value="Martial Status">Married</option>
@@ -80,11 +96,11 @@
                 </select>
                 <br>
                 <label for="phone">Phone Number</label>
-                <input type="tel" placeholder="phone number" name="phone" pattern="[9]{1}[6-8]{1}[0-9]{8}" required>
+                <input type="tel" placeholder="phone number" name="phone" value={{user.telephone}} pattern="[9]{1}[6-8]{1}[0-9]{8}" required>
                 <br>
 
                 <label for="province">Province</label> 
-                <input type="number" placeholder="province" name="province" min="1" max="7" required>
+                <input type="number" placeholder="province" value={{user.state}} name="province" min="1" max="7" required>
                 <br>
 
                 <label for="fiscal-year">Fiscal Year</label> <select name="fiscal-year" id="" required>
@@ -100,11 +116,18 @@
                 </select>
                 <br>
 
-
                 <label for="residental-status">Residental Status</label> <select name="residental-status" id="" required>
                     <option value="1">Select Residental Status</option>
-                    <option value="Residental Status">Resident</option>
-                    <option value="Residental Status">unresident</option>
+                    {% if user.resident is "resident"  %}
+                    <option value="resident" selected>Resident</option>
+                    {%else%}
+                    <option value="resident">Resident</option>
+                    {%endif%}
+                    {% if user.resident is "rental"  %}
+                    <option value="rental" selected>Rental</option>
+                    {%else%}
+                    <option value="rental">Rental</option>
+                    {%endif%}
                 </select>
                 <br>
 

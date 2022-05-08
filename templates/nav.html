@@ -15,7 +15,7 @@
         <li><a style="color: black;" href="{% url 'register' %}">Sign Up</a></li>
         {%endif%}
         {% if user.is_superuser %}
-            <a style="color: black;" href="/admin"> <p>Admin Panel</p></a>
+            <a style="color: black;" href="/dashboard"> <li>Admin Panel</li></a>
         {% endif %}
     </ul>
     <hr>

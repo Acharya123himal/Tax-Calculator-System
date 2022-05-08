@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 
-def sendmail(name,email,subject,message):
+def sendmail(email,subject,message):
     subject=subject
     message=message
     email_from=settings.EMAIL_HOST_USER

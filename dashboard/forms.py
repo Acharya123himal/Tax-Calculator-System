@@ -3,13 +3,12 @@ from .models import Mail, Settings
 from django.forms import ModelForm
 
 class MailForm(forms.ModelForm):
-    sender = forms.TextInput()
     email=forms.EmailField()
     message = forms.TextInput()
     subject = forms.TextInput()
     class Meta:
         model = Mail
-        fields = ["sender","subject","email","message"]
+        fields = ["subject","email","message"]
         
 class SettingsForm(forms.ModelForm):
     image=forms.ImageField()

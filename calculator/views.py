@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.cache import cache_control
 from django.contrib.auth import get_user_model
+from .models import TaxCalculator
+
 user = get_user_model()
 marital_status=''
 def tax_calculation(salary,tax,record):
@@ -20,12 +22,13 @@ def tax_calculation(salary,tax,record):
     else:
         record['0']=[salary,1,0.01*(salary)]
         return [tax+0.01*salary,record]
-    
+
 @cache_control(no_cache=True, must_revalidate=True)
 def calculator(request):
     if request.method == 'POST':
         name=request.POST.get('name')
         address=request.POST.get('address')
+        email=request.POST.get('email')
         marital_status=request.POST.get('marital-status')
         age=int(request.POST.get('age'))
         fiscal_year=request.POST.get('fiscal-year')
@@ -64,6 +67,9 @@ def calculator(request):
             'liable_tax':liable_tax,
             'liable_tax_monthly':liable_tax_monthly
         }
+        model=TaxCalculator
+        model.email=email
+        model.save()
         return render(request,'result.html',data)
     else:
         return render(request, 'calculation.html',)

@@ -29,18 +29,10 @@
             <td>{{user.username}}</td>
             <td>{{user.is_active}}</td>
             <td><a href="/delete-user?username={{user.username}}" class = "btn btn-danger">Delete User</a>
-                {% if not user.is_staff%}
-                <a href="/make-admin?username={{user.username}}" class = "btn btn-danger">Make Admin</a>
-                {%else%}
-                <a href="/revoke-admin?username={{user.username}}" class = "btn btn-danger">Revoke Role</a>
-                {%endif%}
-                {%if not user.is_blocked%}
-                <a href="/block-user?username={{user.username}}" class = "btn btn-danger">Block User</a>
-                {%else%}
-                <a href="/enable-user?username={{user.username}}" class = "btn btn-danger">Enable User</a>
-                {%endif%}
 
-             </td>
+                <a href="/enable-user?username={{user.username}}" class = "btn btn-danger">Enable User</a>
+
+            </td>
         </tr>
         {% endfor %}
         
@@ -49,7 +41,7 @@
 {% else %}
 
 <div class = "alert alert-danger">
-    No User
+    No User is Blocked
 </div>
 {% endif %}
 
