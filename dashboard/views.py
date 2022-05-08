@@ -3,8 +3,12 @@ import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from blog.models import Blog
+from authentication.models import User
 from django.contrib.auth import get_user_model
 user = get_user_model()
+from .forms import  MailForm
+from .helpers import sendmail
+from django.views.generic import ListView
 
 @login_required(login_url = "login")
 def dashboard(request):
@@ -30,3 +34,31 @@ def settings(request):
 @login_required(login_url = "login")
 def user_list(request):
     return render(request,"admin/user_list.html",{'users':user.objects.all()})
+
+@login_required(login_url = "login")
+def send_mail(request):
+    form = MailForm(request.POST or None)
+    if form.is_valid():
+        formdata = form.save(commit=False)
+        sendmail(formdata.sender, formdata.email, formdata.subject, formdata.message)
+        messages.success(request,"Mail Sent Successfully")
+        return redirect("dashboard")
+    return render(request,"admin/send-mail.html",{"form":form})
+
+class MakeAdminView(ListView):
+    model=User
+    def get(self,request):
+        uuser=request.GET.get('username')
+        usr = User.objects.get(username=uuser)
+        usr.is_staff = True
+        usr.is_superuser = True
+        usr.save()
+        return redirect('user-list')
+
+class DeleteUserView(ListView):
+    model=User
+    def get(self,request):
+        uuser=request.GET.get('username')
+        usr = User.objects.get(username=uuser)
+        usr.delete()
+        return redirect('dashboard')

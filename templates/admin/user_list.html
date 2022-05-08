@@ -28,7 +28,9 @@
             <td>{{user.last_name}}</td>
             <td>{{user.username}}</td>
             <td>{{user.is_active}}</td>
-            <td><a href="#" class = "btn btn-danger">Delete</a> </td>
+            <td><a href="/delete-user?username={{user.username}}" class = "btn btn-danger">Delete User</a>
+                <a href="/make-admin?username={{user.username}}" class = "btn btn-danger">Make Admin</a>
+             </td>
         </tr>
         {% endfor %}
         
