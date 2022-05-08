@@ -1,19 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.cache import cache_control
-
-@cache_control(no_cache=True, must_revalidate=True)
+from django.contrib.auth import get_user_model
+user = get_user_model()
+marital_status=''
 def tax_calculation(salary,tax,record):
     if(salary>2000000):
         record['2000000']=[salary-2000000,36,0.36*(salary-2000000)]
         return tax_calculation(2000000,tax+0.36*(salary-2000000),record)
-    elif (salary>700000):
+    elif (salary>(7000000 if marital_status=='unmarried' else 750000)):
         record['700000']=[salary-700000,30,0.3*(salary-700000)]
         return tax_calculation(700000,tax+0.3*(salary-700000),record)
-    elif salary>500000:
+    elif salary>((5000000 if marital_status=='unmarried' else 550000)):
         record['500000']=[salary-500000,20,0.2*(salary-500000)]
         return tax_calculation(500000,tax+0.2*(salary-500000),record)
-    elif salary>400000:
+    elif salary>(4000000 if marital_status=='unmarried' else 450000):
         record['400000']=[salary-400000,10,0.1*(salary-400000)]
         return tax_calculation(400000,tax+0.1*(salary-400000),record)
     else:
@@ -43,6 +44,7 @@ def calculator(request):
         annual_salary=monthly_salary*months+bonus+allowance+others
         total_deduction=sum_epf_cit+insurance+medical_expense+other_expense
         net_accessable=annual_salary-total_deduction
+        print(marital_status)
         annual_tax_record=tax_calculation(net_accessable,0,{})
         annual_tax=annual_tax_record[0]
         record=annual_tax_record[1]
@@ -64,5 +66,5 @@ def calculator(request):
         }
         return render(request,'result.html',data)
     else:
-        return render(request, 'calculation.html')
+        return render(request, 'calculation.html',)
 

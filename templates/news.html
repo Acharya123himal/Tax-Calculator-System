@@ -1,72 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 <div class ="row">
-    <div class="col-md-10 offset-md-3">
+    <div class="col-md-10 offset-md-5">
         <div class="col-lg-8">
-            <h3>Articles</h3>
-            <hr>
+            <h3>Get The Latest News</h3>
         </div>
     </div>
 </div>
-<div class ="row">
-<div class="col-md-10 offset-md-3">
-    <div class="col-lg-8">
-        <form>
-            {% csrf_token %} 
-            <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Search">
-            <button type="submit" class="btn btn-danger">Search</button>
-        </form>
-    </div>
-</div>
-
-</div>
 
 
-{% if articles %}
+{% if blog %}
 
-{% for article in articles %}
 <div class="row">
-<div class="col-md-10 offset-md-3">
-
+<div class="col-md-12 offset-md-1">
+{% for article in blog %}
 <!-- Post Content Column -->
-<div class="col-lg-8">
-
+<div class="col-lg-4">
     <!-- Title -->
-    <a href="{% url 'article:detail' article.slug %}"><h2 class="mt-4">{{article.title}}</h2></a> 
-        
-    <!-- Author -->
-    <p class="lead">
-        
-        {{article.author.username}} Posted by
-    </p>
+    <a href="{% url 'detail' article.slug %}"><h2 class="mt-3">{{article.title}}</h2></a> 
 
-    <hr>
-
-    <!-- Date/Time -->
-    <p>{{article.created_date}}</p>
-    <hr>
     <!-- Preview Image -->
-    {% if article.article_image %}
-    <a href="{% url 'article:detail' article.slug %}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""></a>
+    {% if article.blog_image %}
+    <a href="{% url 'detail' article.slug %}"><img class="img-fluid rounded" src={{article.blog_image.url}} alt=""></a>
     {% endif %}
-    
-
-    <hr>
-
     <!-- Post Content -->
     <p class="lead">
         {{article.content|safe|truncatewords:50}}
     </p>
 
-    <a href="{% url 'article:detail' article.slug %}" class ="btn btn-danger my-3">Read More</a>
-    <hr>
-        
-        </div>
+    <a href="{% url 'detail' article.slug %}" class ="btn btn-danger my-3">Read More</a>
     </div>
-    </div>
-
 {% endfor %}
 
+    </div>
+    </div>
 
 {% else %}
 <div class ="row">

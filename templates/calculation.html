@@ -26,9 +26,9 @@
         {% endfor %}
         {% endif %}
         <div class="container">
-            <div class="col-flex">
+            <div class="col-flex" style="border: 2px solid #000;">
                 {% if user.is_authenticated %}
-                <label for="name">Name</label> <input type="text" name="name" placeholder="{{ user.get_full_name }}" required value="{{ user.get_full_name }}"> <br>
+                <label for="name">Name</label> <input type="text" name="name" placeholder="Full Name" required value="{{ user.first_name }} {{ user.last_name }}"> <br>
                 <label for="email">Email</label> <input type="email" name="email" placeholder="{{ user.email }}" required value="{{ user.email }}"> <br>
                 <label for="gender">Gender</label> <select name="gender" id="" required>
                     <option value="1">Select gender</option>
@@ -41,8 +41,8 @@
                 <br>
                 <label for="marital-status">Martial Status</label> <select name="marital-status" id="" required>
                     <option value="1">Select Martial Status</option>
-                    <option value="Martial Status">Married</option>
-                    <option value="Martial Status">single</option>
+                    <option value="married">Married</option>
+                    <option value="unmarried">single</option>
                 </select>
                 {%else%}
                 <label for="name">Name</label> <input type="text" name="name" placeholder="Name" required > <br>
@@ -67,7 +67,7 @@
                 <br>
             </div>
 
-            <div class="col-flex">
+            <div class="col-flex" style="border: 2px solid #000;">
                 <label for="age">Age</label> <select name="age" id="">
                     <option value="1">Select Age</option>
                     <option value="1">18</option>
@@ -112,16 +112,16 @@
         </div>
 
         <div class="container">
-            <div class="col-flex">
+            <div class="col-flex" style="border: 2px solid #000;">
             <h3 class="text-container">  Income</h3>
                 </div>
-                <div class="col-flex">
+                <div class="col-flex" style="border: 2px solid #000;">
                     <h3 class="text-container">  Deducation </h3>
                 </div>
         </div>
 
         <div class="container">
-            <div class="col-flex">
+            <div class="col-flex" style="border: 2px solid #000;">
                 <label for="monthly-salary">Monthly Salary</label> <input type="number" name="monthly-salary" id="monthly-salary" placeholder="Monthly Salary" onchange="edit_value()" value="0" min="0" required> <br>
                 <label for="months">Number of Months</label> <input type="number" name="months" id="months" placeholder="Number of Months" onchange="edit_value()"  value="0" required min="1" max="12"> <br>
                 <label for="bonus">Bonus</label> <input type="number" name="bonus" id="bonus" placeholder="Bonus" onchange="edit_value()"  min="0" value="0" required> <br>
@@ -129,7 +129,7 @@
                 <label for="others">Others</label> <input type="number" name="others" id="others" placeholder="Others" onchange="edit_value()" value="0" min="0" > <br>
                 <br>
             </div>
-            <div class="col-flex">
+            <div class="col-flex" style="border: 2px solid #000;">
                 <label for="name">Employes Provident Fund</label> <input type="number"  placeholder="Employes Provident Fund" id="employee-provident-fund" name="employee-provident-fund" min="0" value="0" onchange="edit_value()" > <br>
                 <label for="email">Citizen Investment Trust</label> <input type="number" placeholder="Citizen Investment Trust" id="citizen-investment-trust" name="citizen-investment-trust" min="0" min="0" value="0"  onchange="edit_value()" > <br>
                 <label for="insurance">Insurance</label> <input type="number" placeholder="Insurance" min="0" id="insurance" name="insurance" onchange="edit_value()" value="0" min="0" > <br>
@@ -153,7 +153,7 @@
             </div>
             <div class="col-flex-button">
                 <div class="btns cal">
-                <button type="submit" onclick="reset()">Calculate Tax</button>
+                <button type="submit" >Calculate Tax</button>
                 </div>
             </div>
         </div>

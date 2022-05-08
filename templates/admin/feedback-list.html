@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% block title %} Blog {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h3>Feedback</h3>
+<hr>
+
+{% if feedback %}
+<table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Message</th>
+            <th scope="col">Sent Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in feedback %}
+        <tr>
+            <th scope="row">{{article.id}}</th>
+            <td>{{article.sender}}</a></td>
+            <td>{{article.email}}</td>
+            <td>{{article.message}}</td>
+            <td>{{article.date_sent}}</td>
+        </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+{% else %}
+
+<div class = "alert alert-danger">
+    No article
+</div>
+{% endif %}
+
+
+
+{% endblock content %}
+

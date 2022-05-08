@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'calculator',
     'ckeditor',
     'crispy_forms',
+    'dashboard',
+    'feedback',
 ]
 
 MIDDLEWARE = [
@@ -110,8 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -131,6 +131,10 @@ STATIC_ROOT = ''
 
 STATIC_URL = '/static/'
 
+# MEDIA_ROOT=''
+
+# MEDIA_URL=''
+
 STATICFILES_DIRS = ( os.path.join('static'), )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -145,3 +149,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'himal.acharya12377@gmail.com'
 EMAIL_HOST_PASSWORD = 'eqggiavayakdztfs'
+AUTH_USER_MODEL = 'authentication.User'

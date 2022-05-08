@@ -14,10 +14,17 @@
     <h1 class="feedback-title">Give Feedback</h1>
     <form class="feedback-container" method="post">
         {% csrf_token %}
-        <input type="Username" id="feedbackname" name="name" placeholder="Name" required><br>
-        <input type="tel" id="feedbacknumber" name="contact" placeholder="Mobile Number" pattern="[9]{1}[6-8]{1}[0-9]{8}" required><br>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert" >
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <input type="text" id="feedbackname" name="sender" placeholder="Name" required><br>
+        <input type="text" id="feedbacknumber" name="tel" placeholder="Mobile Number" pattern="[9]{1}[6-8]{1}[0-9]{8}" required><br>
         <input type="email" id="feedbackemail" name="email" placeholder="Email" required><br>
-        <textarea id="feedbackmessage" name="message" rows="4" cols="50" placeholder="What do you think about this website?" required></textarea><br>
+        <textarea type="text" id="feedbackmessage" name="message" rows="4" cols="50" placeholder="What do you think about this website?" required></textarea><br>
         <button type="submit" class="submit-feedback">Submit</button>
         <div class="feedbackside-heading">
             <h2>Contact Us</h2>
