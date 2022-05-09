@@ -873,14 +873,23 @@ box-sizing: border-box;
 
 @media print {
     body * {
+        margin: 0;
         visibility: hidden;
     }
-    .tax-card, .tax-card * {
+    hr{
+        visibility: hidden;
+    }
+    .tax-card * {
         visibility: visible;
+    }
+    .tax-card {
+        visibility: hidden;
     }
     .tax-card {
         position: absolute;
         left: 0;
+        margin: 0;
+        padding: 0;
         top: 0;
     }
     .print-btn{

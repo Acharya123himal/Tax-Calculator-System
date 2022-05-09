@@ -13,4 +13,3 @@ class TaxCalculator(models.Model):
    telephone = models.CharField(_("Telephone"), max_length=10,blank=True, null=True)
    marital = models.CharField(_("Marital Status"), max_length=10, choices=(('married', _('Married')), ('unmarried', _('Unmarried'))), blank=True, null=True)
    resident = models.CharField(_("Resident status"), max_length=10, choices=(('resident', _('Resident')), ('rental', _('Rental'))), blank=True, null=True)
-   

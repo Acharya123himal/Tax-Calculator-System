@@ -67,9 +67,6 @@ def calculator(request):
             'liable_tax':liable_tax,
             'liable_tax_monthly':liable_tax_monthly
         }
-        model=TaxCalculator
-        model.email=email
-        model.save()
         return render(request,'result.html',data)
     else:
         return render(request, 'calculation.html',)

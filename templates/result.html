@@ -61,16 +61,13 @@
         <h2 style="position: absolute; margin-left: 15%;">Net Tax Liability (Yearly): </h2>
         <h2 style="text-align: right; margin-right: 3.5%;">Rs.{{liable_tax}}</h2>
       </div>
+      <button class="save-btn" onclick="save()">Save For Later</button><br>
       <button class="print-btn" onclick="printFunction()">Print</button><br>
     </div>
     <br>
     <br>
     <hr>
-
     {% include "footer.html" %}
-
-
-    
 <script>
   function printFunction(){
     window.print();
