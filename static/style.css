@@ -92,7 +92,7 @@
     color: black;
     font-weight: bold;
     font-size: 14px;
-    margin-left: 48%;
+    margin-left: 43%;
     margin-top: 25px;
 
 }
@@ -108,7 +108,6 @@
 
 .second-block {
     margin-top: 0px;
-
     color: black;
     font-weight: bold;
     font-size: 14px;
@@ -150,8 +149,8 @@
     border-color: black;
     margin-top: 1%;
     margin-left: 15%;
-    width: 1295px;
-    height: 830px;
+    width: 1050px;
+    height: 1000px;
 }
 
 .tax-card1 {
@@ -535,16 +534,17 @@
 }
 
 .print-btn{
+    position: absolute;
+    margin-top: 5%;
     background: #105c1b;
     border: none;
-    margin-top: 10px;
     font-size: 14px;
     padding: 8px;
     border-radius: 5px;
     cursor: pointer;
     color: #fff;
     transition: 0.2s ease;
-    margin-left: 69%;
+    margin-left: 46%;
 }
 
 .print-btn:hover{
@@ -556,6 +556,26 @@
     text-decoration: none;
     color: white;
 }
+
+.save-btn{
+    position: absolute;
+    background: #105c1b;
+    border: none;
+    margin-top: 5%;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s ease;
+    margin-left: 20%;
+}
+
+.save-btn:hover{
+    background: #199b2d;
+    color: white;
+}
+
 
 .more-btn{
     width: 150px;
@@ -907,4 +927,8 @@ box-sizing: border-box;
 
 .calculation_header{
     text-align: center;
+}
+
+.tax-block{
+    margin-top: 10%;
 }

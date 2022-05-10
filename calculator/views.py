@@ -3,7 +3,10 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.views.decorators.cache import cache_control
 from django.contrib.auth import get_user_model
 from .models import TaxCalculator
+from .forms import CalculatorForm
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 user = get_user_model()
 marital_status=''
@@ -74,15 +77,18 @@ def calculator(request):
 @login_required(login_url = "login")
 def history(request):
     if request.method == 'GET':
-        tax = TaxCalculator.objects.filter(email = user.email)
+        tax = TaxCalculator.objects.filter(email = request.user.email)
         print(tax)
-        return render(request,"history.html",{"tax":tax})
-    
+        return render(request,"history.html",{"tax":tax,})
+
+
 @login_required(login_url = "login")
 def save_calculation(request):
-    if request.method == 'POST':
-        tax = TaxCalculator.objects.filter(email = user.email)
-        print(tax)
-        return render(request,"history.html",{"tax":tax})
-    if request.method == 'GET':
-        return HttpResponseRedirect('/calculator')
+    form = CalculatorForm(request.GET or None)
+    if form.is_valid():
+        record = form.save(commit=False)
+        record.email = request.user.email
+        record.save()
+        messages.success(request,"Saved Successfully")
+        return HttpResponseRedirect("/dashboard")
+    return HttpResponseRedirect('/calculator')

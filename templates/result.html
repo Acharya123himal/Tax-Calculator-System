@@ -19,6 +19,7 @@
       <p class="second-block" style="position: absolute;">Address: {{address}}</p>
       <p class="first-amount" style="position: absolute;">Rs. {{liable_tax_monthly}}(Monthly)</p>
       <p class="second-amount" style="position: absolute;">Rs. {{liable_tax}}(Yearly)</p>
+    <div class="tax-block">
       <div class="tax-card1">
         <h2 style="position: absolute;">Sum of EPF and CIT (EPF + CIT): </h2>
         <h2 style="text-align: right;">Rs. {{sum_epf_cit}}</h2>
@@ -61,7 +62,8 @@
         <h2 style="position: absolute; margin-left: 15%;">Net Tax Liability (Yearly): </h2>
         <h2 style="text-align: right; margin-right: 3.5%;">Rs.{{liable_tax}}</h2>
       </div>
-      <button class="save-btn" onclick="save()">Save For Later</button><br>
+    </div>
+      <button class="save-btn" onclick="saveFunction()">Save For Later</button>
       <button class="print-btn" onclick="printFunction()">Print</button><br>
     </div>
     <br>
@@ -71,6 +73,10 @@
 <script>
   function printFunction(){
     window.print();
+  }
+
+  function saveFunction(){
+    window.location.href="/save-calculation?tax={{liable_tax}}&email={{user.email}}"
   }
 </script>
 </body>

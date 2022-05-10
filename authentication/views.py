@@ -66,9 +66,6 @@ def register_request(request):
         else:
             return render(request, 'registration/signup.html')
 
-def update_user(request):
-    if request.method=="POST":
-        pass
 
 def add_profile_picture(request):
     if request.method == 'POST':
