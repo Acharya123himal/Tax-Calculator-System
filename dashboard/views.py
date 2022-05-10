@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from blog.models import Blog
+from .models import Settings
 from feedback.models import Feedback
 from authentication.models import User
 from django.contrib.auth import get_user_model
@@ -11,6 +12,7 @@ user = get_user_model()
 from .forms import  MailForm, SettingsForm
 from .helpers import sendmail
 from django.views.generic import ListView
+from django.core.cache import cache
 
 @login_required(login_url = "login")
 def dashboard(request):
@@ -35,18 +37,25 @@ def manage_post(request):
     blog = Blog.objects.all()
     return render(request,"admin/blog/blog-list.html",{"blog":blog})
 
-@login_required(login_url = "login")
-def settings(request):
-    if not request.user.is_staff:
-        return HttpResponseRedirect('/calculator')
-    form = SettingsForm(request.POST or None)
-    if form.is_valid():
-        formdata = form.save(commit=False)
-        formdata.save()
-        messages.success(request,"Settings Updated Successfully")
-        return HttpResponseRedirect("settings/")
-    return render(request,"admin/settings.html",{"form":form})
-
+class SettingsView(ListView):
+    def get(self,request):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/calculator')
+        # article = get_object_or_404(Settings, logo="logo.png")
+        form = SettingsForm(request.POST or None)
+        return render(request,"admin/settings.html",{"form":form})
+    def post(self,request):
+        if not request.user.is_staff:
+            return HttpResponseRedirect('/calculator')
+        form = SettingsForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            formdata = form.save(commit=False)
+            formdata.save()
+            messages.success(request,"Logo Updated Successfully")
+            cache.clear()
+            return HttpResponseRedirect("/settings")
+        return render(request,"admin/settings.html",{"form":form})
+    
 @login_required(login_url = "login")
 def user_list(request):
     if not request.user.is_staff:

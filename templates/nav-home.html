@@ -4,6 +4,9 @@
 <div class="nav">
     <ul class="nav-menu-2">
         {% if user.is_authenticated %}
+        <li><a style="color: black;" href="{% url 'profile' %}">Profile</a></li>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% comment %} <li><a style="color: black;" href="{% url 'history' %}">History</a></li> {% endcomment %}
         <li><a style="color: black;" href="{% url 'logout' %}">Logout</a></li>
         {%else%}
         <li><a style="color: black;" href="{% url 'login' %}">Login</a></li>

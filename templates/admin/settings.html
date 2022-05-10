@@ -9,8 +9,9 @@
         <div class="col-12 col-xl-11">
             <div class="card card-body border-0 shadow mb-4">
                 <h2 class="h5 mb-4">Settings</h2>
-                {{dashboard.}}
-                <form method="POST"  enctype="multipart/form-data">
+                {{dashboard.image.url}}
+                <form method="POST"  enctype="multipart/form-data" data-ajax="false">
+                    {% csrf_token %}
                     {{form.media}}
                     {{form|crispy}}
                     <div class="mt-3">

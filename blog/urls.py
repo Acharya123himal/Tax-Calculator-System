@@ -9,7 +9,8 @@ urlpatterns = [
     path('update/<slug:slug>',views.updateBlog,name = "update"),
     path('delete/<slug:slug>',views.deleteBlog,name = "delete"),
     path('blog/',views.articles,name = "articles"),
+    path('news/',views.blogView,name = "articles"),
     path('update/<slug:slug>',views.updateBlog,name = "update"),
 ]
 
-# urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

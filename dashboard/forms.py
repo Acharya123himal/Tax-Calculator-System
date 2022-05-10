@@ -1,6 +1,7 @@
 from django import forms
 from .models import Mail, Settings
 from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 
 class MailForm(forms.ModelForm):
     email=forms.EmailField()
@@ -11,8 +12,9 @@ class MailForm(forms.ModelForm):
         fields = ["subject","email","message"]
         
 class SettingsForm(forms.ModelForm):
-    image=forms.ImageField()
-    
+    logo=forms.ImageField()
+    gender = forms.CharField(widget=forms.RadioSelect(choices=[('1', _('Roboto')), ('2', _('Montserrat')),('3', _('Open Sans'))]))
+
     class Meta:
         model=Settings
-        fields=["image"]
+        fields=["logo","gender"]

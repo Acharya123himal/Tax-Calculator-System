@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.views.decorators.cache import cache_control
 from django.contrib.auth import get_user_model
 from .models import TaxCalculator
+from django.contrib.auth.decorators import login_required
 
 user = get_user_model()
 marital_status=''
@@ -47,7 +48,6 @@ def calculator(request):
         annual_salary=monthly_salary*months+bonus+allowance+others
         total_deduction=sum_epf_cit+insurance+medical_expense+other_expense
         net_accessable=annual_salary-total_deduction
-        print(marital_status)
         annual_tax_record=tax_calculation(net_accessable,0,{})
         annual_tax=annual_tax_record[0]
         record=annual_tax_record[1]
@@ -70,4 +70,19 @@ def calculator(request):
         return render(request,'result.html',data)
     else:
         return render(request, 'calculation.html',)
-
+    
+@login_required(login_url = "login")
+def history(request):
+    if request.method == 'GET':
+        tax = TaxCalculator.objects.filter(email = user.email)
+        print(tax)
+        return render(request,"history.html",{"tax":tax})
+    
+@login_required(login_url = "login")
+def save_calculation(request):
+    if request.method == 'POST':
+        tax = TaxCalculator.objects.filter(email = user.email)
+        print(tax)
+        return render(request,"history.html",{"tax":tax})
+    if request.method == 'GET':
+        return HttpResponseRedirect('/calculator')

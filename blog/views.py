@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 
 def blogView(request):
     response=requests.get('https://english.onlinekhabar.com/wp-json/wp/v2/posts?categories=6').json()
-    return render(request, 'news.html',{'response':response})
+    return render(request, 'onlinekhabar.html',{'blog':response})
 
 def articles(request):
     keyword = request.GET.get("keyword")
@@ -41,7 +41,8 @@ def addBlog(request):
 
 def detail(request,slug):
     article = get_object_or_404(Blog, slug=slug)
-    return render(request,"detail.html",{"blog":article })
+    return render(request,"news_details.html",{"article":article })
+    return render(request,"news_details.html",{"blog":article })
 
 @login_required(login_url = "login")
 def updateBlog(request, slug):
@@ -58,9 +59,6 @@ def updateBlog(request, slug):
 @login_required(login_url = "login")
 def deleteBlog(request,slug):
     article = get_object_or_404(Blog,slug=slug)
-
     article.delete()
-
     messages.success(request,"Post Successfully Deleted")
-
     return redirect("dashboard")
