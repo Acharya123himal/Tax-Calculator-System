@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from blog.models import Blog
 from .models import Settings
 from feedback.models import Feedback
+from calculator.models import TaxCalculator
 from authentication.models import User
 from django.contrib.auth import get_user_model
 user = get_user_model()
@@ -23,6 +24,7 @@ def dashboard(request):
         'total_active_user':len(user.objects.filter(is_active=True)),
         'total_feedback':len(Feedback.objects.all()),
         'total_blacklist':len(user.objects.filter(is_blocked=True)),
+        'total_calculation':len(TaxCalculator.objects.all()),
         }
     return render(request,"admin/index.html",data)
 

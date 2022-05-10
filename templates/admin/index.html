@@ -15,6 +15,7 @@
                         <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
                             
                             <div class="d-sm-none">
+                                <h2 class="h6 text-gray-400 mb-0">Total User</h2>
                                 <h2 class="h5">{{total_user}}</h2>
                             </div>
                         </div>
@@ -57,13 +58,13 @@
                             
                             <div class="d-sm-none">
                                 <h2 class="h5">Total Calculations</h2>
-                                <h3 class="fw-extrabold mb-1">345,678</h3>
+                                <h3 class="fw-extrabold mb-1">{{total_calculation}}</h3>
                             </div>
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
                                 <h2 class="h6 text-gray-400 mb-0">Total Calculations</h2>
-                                <h3 class="fw-extrabold mb-2">345k</h3>
+                                <h3 class="fw-extrabold mb-2">{{total_calculation}}</h3>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,7 @@
             </div>
 
         </div>
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+        {% comment %} <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
@@ -148,7 +149,7 @@
                     <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
                 </div>
             </div>
-        </div>
+        </div> {% endcomment %}
     </div>
 
 

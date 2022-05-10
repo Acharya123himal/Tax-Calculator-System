@@ -13,12 +13,14 @@
   {% include 'nav-home.html' %}
 
     <div class="tax-card">
+      <div class="tax-card-heading">
       <h1 class="tax-heading">Net Tax Liability</h1>
       <hr>
       <p class="first-block" style="position: absolute;">Name: {{name}}</p>
       <p class="second-block" style="position: absolute;">Address: {{address}}</p>
       <p class="first-amount" style="position: absolute;">Rs. {{liable_tax_monthly}}(Monthly)</p>
       <p class="second-amount" style="position: absolute;">Rs. {{liable_tax}}(Yearly)</p>
+      </div>
     <div class="tax-block">
       <div class="tax-card1">
         <h2 style="position: absolute;">Sum of EPF and CIT (EPF + CIT): </h2>

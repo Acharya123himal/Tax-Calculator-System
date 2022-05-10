@@ -13,8 +13,8 @@ class MailForm(forms.ModelForm):
         
 class SettingsForm(forms.ModelForm):
     logo=forms.ImageField()
-    gender = forms.CharField(widget=forms.RadioSelect(choices=[('1', _('Roboto')), ('2', _('Montserrat')),('3', _('Open Sans'))]))
+    fonts = forms.CharField(widget=forms.RadioSelect(choices=[('1', _('Roboto')), ('2', _('Montserrat')),('3', _('Open Sans'))]))
 
     class Meta:
         model=Settings
-        fields=["logo","gender"]
+        fields=["logo","fonts"]

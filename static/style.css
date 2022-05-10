@@ -915,7 +915,14 @@ box-sizing: border-box;
     .print-btn{
         visibility: hidden;
     }
+    .save-btn{
+        visibility: hidden;
+    }
+    .tax-card-heading{
+        padding-left: 15%;
+    }
 }
+
 
 
 .grid-wrapper{
