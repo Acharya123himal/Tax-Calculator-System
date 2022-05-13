@@ -785,6 +785,9 @@ footer p {
     bottom:0;
     left:1;
 }
+.footer-home{
+    margin-top: 13%;
+}
 
 .container{
     display: flex;

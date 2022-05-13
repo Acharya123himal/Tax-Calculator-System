@@ -138,4 +138,4 @@ class DeleteUserView(ListView):
         uuser=request.GET.get('username')
         usr = User.objects.get(username=uuser)
         usr.delete()
-        return HttpResponseRedirect('dashboard/')
+        return HttpResponseRedirect('/dashboard/')

@@ -15,6 +15,5 @@ def send_welcome_mail(email,name):
     message=f'Hi {name}, Welcome to Tax Calculator System.'
     email_from=settings.EMAIL_HOST_USER
     recipient_list=[email]
-    print(recipient_list*100)
     send_mail(subject,message,email_from,recipient_list)
     return True
