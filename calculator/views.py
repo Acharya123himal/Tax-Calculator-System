@@ -9,23 +9,40 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 user = get_user_model()
-marital_status=''
-def tax_calculation(salary,tax,record):
-    if(salary>2000000):
-        record['2000000']=[salary-2000000,36,0.36*(salary-2000000)]
-        return tax_calculation(2000000,tax+0.36*(salary-2000000),record)
-    elif (salary>(7000000 if marital_status=='unmarried' else 750000)):
-        record['700000']=[salary-700000,30,0.3*(salary-700000)]
-        return tax_calculation(700000,tax+0.3*(salary-700000),record)
-    elif salary>((5000000 if marital_status=='unmarried' else 550000)):
-        record['500000']=[salary-500000,20,0.2*(salary-500000)]
-        return tax_calculation(500000,tax+0.2*(salary-500000),record)
-    elif salary>(4000000 if marital_status=='unmarried' else 450000):
-        record['400000']=[salary-400000,10,0.1*(salary-400000)]
-        return tax_calculation(400000,tax+0.1*(salary-400000),record)
+
+def tax_calculation(salary,tax,record,marital_status):
+    if marital_status=='unmarried':
+        if(salary>2000000):
+            record['2000000']=[salary-2000000,36,0.36*(salary-2000000)]
+            return tax_calculation(2000000,tax+0.36*(salary-2000000),record,marital_status)
+        elif (salary>700000):
+            record['700000']=[salary-700000,30,0.3*(salary-700000)]
+            return tax_calculation(700000,tax+0.3*(salary-700000),record,marital_status)
+        elif salary>(500000):
+            record['500000']=[salary-500000,20,0.2*(salary-500000)]
+            return tax_calculation(500000,tax+0.2*(salary-500000),record,marital_status)
+        elif salary>(400000):
+            record['400000']=[salary-400000,10,0.1*(salary-400000)]
+            return tax_calculation(400000,tax+0.1*(salary-400000),record,marital_status)
+        else:
+            record['0']=[salary,1,0.01*(salary)]
+            return [tax+0.01*salary,record]
     else:
-        record['0']=[salary,1,0.01*(salary)]
-        return [tax+0.01*salary,record]
+        if(salary>2000000):
+            record['2000000']=[salary-2000000,36,0.36*(salary-2000000)]
+            return tax_calculation(2000000,tax+0.36*(salary-2000000),record,marital_status)
+        elif (salary>750000):
+            record['750000']=[salary-750000,30,0.3*(salary-750000)]
+            return tax_calculation(750000,tax+0.3*(salary-750000),record,marital_status)
+        elif salary>(550000):
+            record['550000']=[salary-550000,20,0.2*(salary-550000)]
+            return tax_calculation(550000,tax+0.2*(salary-550000),record,marital_status)
+        elif salary>(450000):
+            record['450000']=[salary-450000,10,0.1*(salary-450000)]
+            return tax_calculation(450000,tax+0.1*(salary-450000),record,marital_status)
+        else:
+            record['0']=[salary,1,0.01*(salary)]
+            return [tax+0.01*salary,record]
 
 @cache_control(no_cache=True, must_revalidate=True)
 def calculator(request):
@@ -51,7 +68,7 @@ def calculator(request):
         annual_salary=monthly_salary*months+bonus+allowance+others
         total_deduction=sum_epf_cit+insurance+medical_expense+other_expense
         net_accessable=annual_salary-total_deduction
-        annual_tax_record=tax_calculation(net_accessable,0,{})
+        annual_tax_record=tax_calculation(net_accessable,0,{},marital_status)
         annual_tax=annual_tax_record[0]
         record=annual_tax_record[1]
         liable_tax=annual_tax-medical_tax
