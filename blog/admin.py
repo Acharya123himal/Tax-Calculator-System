@@ -3,7 +3,7 @@ from .models import Blog
 
 @admin.register(Blog)
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ["title","author","created_date"]A
+    list_display = ["title","author","created_date"]
 
     list_display_links = ["title","created_date"]
 
